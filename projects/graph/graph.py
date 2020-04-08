@@ -3,9 +3,11 @@ Simple graph implementation
 """
 from util import Stack, Queue  # These may come in handy
 
+
 class Graph:
 
     """Represent a graph as a dictionary of vertices mapping labels to edges."""
+
     def __init__(self):
         self.vertices = {}
 
@@ -13,33 +15,66 @@ class Graph:
         """
         Add a vertex to the graph.
         """
-        pass  # TODO
+        self.vertices[vertex_id] = set()
 
     def add_edge(self, v1, v2):
         """
         Add a directed edge to the graph.
         """
-        pass  # TODO
+        v1_edge_set = self.vertices[v1]
+        v1_edge_set.add(v2)
 
     def get_neighbors(self, vertex_id):
         """
         Get all neighbors (edges) of a vertex.
         """
-        pass  # TODO
+        return self.vertices[vertex_id]
 
     def bft(self, starting_vertex):
         """
         Print each vertex in breadth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        q = Queue()
+        q.enqueue(starting_vertex)
+        visited = set()
+
+        while q.size() > 0:
+            curr_node = q.dequeue()
+
+            if curr_node not in visited:
+                print(curr_node)
+                visited.add(curr_node)
+                neighbors = self.get_neighbors(curr_node)
+
+                for neighbor in neighbors:
+                    q.enqueue(neighbor)
+
+        return visited
 
     def dft(self, starting_vertex):
         """
         Print each vertex in depth-first order
         beginning from starting_vertex.
         """
-        pass  # TODO
+        s = Stack()
+        s.push(starting_vertex)
+        visited = set()
+
+        while s.size() > 0:
+            curr_node = s.pop()
+
+            if curr_node not in visited:
+                print(curr_node)
+
+                visited.add(curr_node)
+
+                neighbors = self.get_neighbors(curr_node)
+
+                for neighbor in neighbors:
+                    s.push(neighbor)
+
+        return visited
 
     def dft_recursive(self, starting_vertex):
         """
@@ -75,6 +110,7 @@ class Graph:
         This should be done using recursion.
         """
         pass  # TODO
+
 
 if __name__ == '__main__':
     graph = Graph()  # Instantiate your graph
