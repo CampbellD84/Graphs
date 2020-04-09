@@ -2,6 +2,7 @@
 Simple graph implementation
 """
 from util import Stack, Queue  # These may come in handy
+import sys
 
 
 class Graph:
@@ -99,7 +100,29 @@ class Graph:
         starting_vertex to destination_vertex in
         depth-first order.
         """
-        pass  # TODO
+        # create a stack
+        s = Stack()
+
+        # push starting vertex in stack
+        s.push([starting_vertex])
+
+        # create empty set to track visited vertices
+        visited = set()
+
+        # iterate through until all verts have been visited
+        while s.size() > 0:
+            path = s.pop()
+            vtx = path[-1]
+
+            if vtx not in visited:
+                if vtx == destination_vertex:
+                    return path
+                visited.add(vtx)
+                for nxt_vtx in self.get_neighbors(vtx):
+                    # copy path
+                    new_path = list(path)
+                    new_path.append(nxt_vtx)
+                    s.push(new_path)
 
     def dfs_recursive(self, starting_vertex, destination_vertex):
         """
@@ -164,18 +187,18 @@ if __name__ == '__main__':
         1, 2, 4, 6, 3, 5, 7
     '''
     graph.dft(1)
-    graph.dft_recursive(1)
+    # graph.dft_recursive(1)
 
-    '''
-    Valid BFS path:
-        [1, 2, 4, 6]
-    '''
-    print(graph.bfs(1, 6))
+    # '''
+    # Valid BFS path:
+    #     [1, 2, 4, 6]
+    # '''
+    # print(graph.bfs(1, 6))
 
-    '''
-    Valid DFS paths:
-        [1, 2, 4, 6]
-        [1, 2, 4, 7, 6]
-    '''
+    # '''
+    # Valid DFS paths:
+    #     [1, 2, 4, 6]
+    #     [1, 2, 4, 7, 6]
+    # '''
     print(graph.dfs(1, 6))
-    print(graph.dfs_recursive(1, 6))
+    # print(graph.dfs_recursive(1, 6))
