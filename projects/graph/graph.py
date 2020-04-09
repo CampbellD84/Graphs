@@ -84,7 +84,7 @@ class Graph:
 
         This should be done using recursion.
         """
-        # check if visited exists
+        # check if starting_vertex is in visited
         if starting_vertex in visited:
             return
         else:
