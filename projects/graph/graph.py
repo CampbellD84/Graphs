@@ -83,14 +83,14 @@ class Graph:
 
         This should be done using recursion.
         """
-        # check if starting_vertex is in visited
-        if starting_vertex in visited:
-            return
-        else:
-            print(starting_vertex)
+        # check if starting_vertex is not in visited
+        if starting_vertex not in visited:
             visited.add(starting_vertex)
+
+            print(starting_vertex)
+            adj_verts = self.get_neighbors(starting_vertex)
             # iterate through neighbors of starting_vertex
-            for n in self.get_neighbors(starting_vertex):
+            for n in adj_verts:
                 # call func
                 self.dft_recursive(n, visited)
 
