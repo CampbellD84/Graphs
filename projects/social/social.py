@@ -86,7 +86,7 @@ class SocialGraph:
         The key is the friend's ID and the value is the path.
         """
 
-        # use BFS
+        # use BFT
 
         q = Queue()
         q.enqueue([user_id])
