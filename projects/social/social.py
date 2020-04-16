@@ -68,6 +68,7 @@ class SocialGraph:
 
         # then grab the first N elemts from the list.
         total_friendships = num_users * avg_friendships
+        # add_friendship makes 2 friendships at a time
         pairs_needed = total_friendships // 2
 
         random_friendships = friendships[:pairs_needed]
